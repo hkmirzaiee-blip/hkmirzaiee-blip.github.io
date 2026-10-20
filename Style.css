@@ -1,0 +1,277 @@
+/* پالت رنگ سازمانی حوزه سیم و کابل: سرمه‌ای صنعتی + نارنجی مسی */
+:root {
+  --primary: #153B5B;        /* سرمه‌ای صنعتی */
+  --primary-dark: #0D2740;
+  --accent: #E8702A;         /* نارنجی مسی — رنگ سیم و روکش */
+  --accent-dark: #C95E20;
+  --bg: #ffffff;
+  --bg-alt: #F3F6F9;
+  --text: #26313A;
+  --text-muted: #64717C;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: Vazirmatn, Tahoma, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.8;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* ===== هدر ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  box-shadow: 0 1px 8px rgba(13, 39, 64, 0.1);
+  z-index: 100;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--primary); }
+
+.logo-mark {
+  width: 40px; height: 40px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 10px;
+  display: grid; place-items: center;
+  font-size: 1.3rem; font-weight: bold;
+}
+
+.logo-text { font-size: 1.1rem; font-weight: bold; }
+
+.main-nav { display: flex; gap: 28px; }
+
+.main-nav a { text-decoration: none; color: var(--text); font-size: 0.98rem; transition: color 0.2s; }
+.main-nav a:hover { color: var(--accent); }
+
+.menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+.menu-toggle span { width: 24px; height: 3px; background: var(--primary); border-radius: 2px; }
+
+/* ===== بخش قهرمان ===== */
+.hero {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  text-align: center;
+  padding: 90px 20px 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* خطوط مسی تزئینی - اشاره به رشته سیم */
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 6px;
+  background: repeating-linear-gradient(90deg, var(--accent) 0 40px, var(--accent-dark) 40px 80px);
+}
+
+.hero h1 { font-size: 2.4rem; margin-bottom: 12px; }
+
+.hero p { font-size: 1.15rem; color: rgba(255, 255, 255, 0.85); margin-bottom: 28px; }
+
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 12px 34px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+.btn:hover { background: var(--accent-dark); }
+
+/* ===== بخش‌های عمومی ===== */
+.section { padding: 70px 0; }
+.section-alt { background: var(--bg-alt); }
+
+.section-title {
+  text-align: center;
+  font-size: 1.7rem;
+  color: var(--primary);
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px; height: 4px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin: 10px auto 0;
+}
+
+/* ===== معرفی شرکت ===== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.about-text p { margin-bottom: 14px; color: var(--text-muted); }
+
+.about-stats { list-style: none; text-align: center; }
+
+.about-stats li {
+  background: var(--bg);
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 10px rgba(13, 39, 64, 0.06);
+}
+
+.about-stats strong { display: block; font-size: 1.4rem; color: var(--accent); }
+.about-stats span { color: var(--text-muted); font-size: 0.9rem; }
+
+/* ===== محصولات ===== */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.product-card {
+  background: var(--bg);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(13, 39, 64, 0.07);
+  transition: transform 0.2s;
+}
+.product-card:hover { transform: translateY(-4px); }
+
+.product-img {
+  height: 180px;
+  display: grid; place-items: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* تا وقتی عکس واقعی نگذاشته‌اید این گرادیان نمایش داده می‌شود */
+.placeholder { background: linear-gradient(135deg, var(--primary), var(--accent)); }
+
+.product-card h3 { padding: 16px 18px 4px; color: var(--primary); }
+.product-card p { padding: 0 18px 20px; color: var(--text-muted); font-size: 0.95rem; }
+
+/* ===== آلبوم عکس ===== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.gallery-item { cursor: pointer; }
+
+.gallery-img {
+  height: 200px;
+  border-radius: 12px;
+  display: grid; place-items: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: bold;
+  transition: opacity 0.2s;
+}
+.gallery-item:hover .gallery-img { opacity: 0.85; }
+
+/* ===== ارتباط با ما ===== */
+.contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; }
+
+.contact-info p { margin-bottom: 12px; color: var(--text-muted); }
+.contact-info strong { color: var(--text); }
+
+.contact-form label { display: block; margin-bottom: 14px; font-size: 0.95rem; }
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  margin-top: 6px;
+  padding: 11px 14px;
+  border: 1px solid #D4DEE6;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: var(--bg);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: 2px solid var(--accent);
+  border-color: transparent;
+}
+
+.form-note {
+  margin-top: 10px;
+  color: #1F8A4C;
+  font-weight: bold;
+  font-size: 0.95rem;
+  display: none;
+}
+
+/* ===== فوتر ===== */
+.site-footer {
+  background: var(--primary-dark);
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 22px 20px;
+  font-size: 0.9rem;
+}
+
+/* ===== پنجره بزرگ‌نمایی عکس ===== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 27, 40, 0.88);
+  display: none;
+  place-items: center;
+  z-index: 200;
+  padding: 20px;
+}
+.lightbox.open { display: grid; }
+.lightbox img { max-width: 90vw; max-height: 75vh; border-radius: 10px; }
+.lightbox-caption { color: #fff; margin-top: 14px; font-size: 0.95rem; }
+.lightbox-close {
+  position: absolute;
+  top: 18px; left: 22px;
+  background: none; border: none;
+  color: #fff;
+  font-size: 2.4rem;
+  cursor: pointer;
+}
+
+/* ===== ریسپانسیو ===== */
+@media (max-width: 768px) {
+  .menu-toggle { display: flex; }
+
+  .main-nav {
+    position: absolute;
+    top: 68px; left: 0; right: 0;
+    background: var(--bg);
+    flex-direction: column;
+    gap: 0;
+    box-shadow: 0 6px 14px rgba(13, 39, 64, 0.1);
+    display: none;
+  }
+  .main-nav.open { display: flex; }
+  .main-nav a { padding: 14px 24px; border-bottom: 1px solid var(--bg-alt); }
+
+  .about-grid,
+  .contact-grid { grid-template-columns: 1fr; }
+
+  .hero h1 { font-size: 1.8rem; }
+}
