@@ -10,7 +10,7 @@ mainNav.querySelectorAll("a").forEach((link) => {
   link.addEventListener("click", () => mainNav.classList.remove("open"));
 });
 
-// ===== پنجره بزرگ‌نمایی عکس (Lightbox) =====
+// ===== پنجره بزرگ‌نمایی عکس =====
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightboxImg");
 const lightboxCaption = document.getElementById("lightboxCaption");
@@ -18,13 +18,10 @@ const lightboxClose = document.getElementById("lightboxClose");
 
 document.querySelectorAll(".gallery-item").forEach((item) => {
   item.addEventListener("click", () => {
-    const img = item.querySelector("img"); // بعد از گذاشتن عکس واقعی کار می‌کند
+    const img = item.querySelector("img");
     if (img) {
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt || "";
-    } else {
-      lightboxImg.removeAttribute("src");
-      lightboxImg.alt = "";
     }
     lightboxCaption.textContent = item.dataset.caption || "";
     lightbox.classList.add("open");
@@ -43,9 +40,21 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeLightbox();
 });
 
+// ===== انیمیشن ظاهر شدن هنگام اسکرول =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
 // ===== فرم ارتباط با ما =====
-// این نسخه پیام را فقط محلی نشان می‌دهد. برای دریافت واقعی پیام‌ها،
-// بعداً می‌توان سرویس فرم رایگانی مثل Web3Forms را وصل کرد.
+// فعلاً پیام فقط محلی نشان داده می‌شود؛ برای دریافت واقعی پیام‌ها
+// بعداً یک سرویس فرم داخلی وصل می‌کنیم.
 const contactForm = document.getElementById("contactForm");
 const formNote = document.getElementById("formNote");
 
