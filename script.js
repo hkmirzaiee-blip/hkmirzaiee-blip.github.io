@@ -1,67 +1,46 @@
 // ===== منوی موبایل =====
-const menuToggle = document.getElementById("menuToggle");
-const mainNav = document.getElementById("mainNav");
-
-menuToggle.addEventListener("click", () => {
-  mainNav.classList.toggle("open");
+const menuBtn = document.getElementById('menuBtn');
+const mainNav = document.getElementById('mainNav');
+menuBtn.addEventListener('click', () => {
+  mainNav.classList.toggle('open');
 });
+// بستن منو بعد از کلیک روی لینک
+mainNav.querySelectorAll('a').forEach(a =>
+  a.addEventListener('click', () => mainNav.classList.remove('open'))
+);
 
-mainNav.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => mainNav.classList.remove("open"));
-});
-
-// ===== پنجره بزرگ‌نمایی عکس =====
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightboxImg");
-const lightboxCaption = document.getElementById("lightboxCaption");
-const lightboxClose = document.getElementById("lightboxClose");
-
-document.querySelectorAll(".gallery-item").forEach((item) => {
-  item.addEventListener("click", () => {
-    const img = item.querySelector("img");
-    if (img) {
-      lightboxImg.src = img.src;
-      lightboxImg.alt = img.alt || "";
-    }
-    lightboxCaption.textContent = item.dataset.caption || "";
-    lightbox.classList.add("open");
+// ===== لایت‌باکس گالری =====
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+document.querySelectorAll('.gallery-item img').forEach(img => {
+  img.addEventListener('click', () => {
+    lightboxImg.src = img.src;
+    lightbox.classList.add('open');
   });
 });
-
-function closeLightbox() {
-  lightbox.classList.remove("open");
-}
-
-lightboxClose.addEventListener("click", closeLightbox);
-lightbox.addEventListener("click", (e) => {
-  if (e.target === lightbox) closeLightbox();
-});
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeLightbox();
+document.getElementById('lightboxClose').addEventListener('click', () =>
+  lightbox.classList.remove('open')
+);
+lightbox.addEventListener('click', e => {
+  if (e.target === lightbox) lightbox.classList.remove('open');
 });
 
-// ===== انیمیشن ظاهر شدن هنگام اسکرول =====
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
+// ===== انیمیشن ظاهرشدن با اسکرول =====
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
+      entry.target.classList.add('visible');
       observer.unobserve(entry.target);
     }
   });
 }, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-
-// ===== فرم ارتباط با ما =====
-// فعلاً پیام فقط محلی نشان داده می‌شود؛ برای دریافت واقعی پیام‌ها
-// بعداً یک سرویس فرم داخلی وصل می‌کنیم.
-const contactForm = document.getElementById("contactForm");
-const formNote = document.getElementById("formNote");
-
-contactForm.addEventListener("submit", (e) => {
+// ===== فرم تماس (محلی — بعداً به سرویس واقعی وصل می‌شود) =====
+const contactForm = document.getElementById('contactForm');
+contactForm.addEventListener('submit', e => {
   e.preventDefault();
-  formNote.textContent = "پیام شما ثبت شد. به‌زودی با شما تماس می‌گیریم.";
-  formNote.style.display = "block";
+  document.getElementById('formMsg').textContent =
+    'پیام شما ثبت شد. به‌زودی با شما تماس می‌گیریم. ✅';
   contactForm.reset();
-  setTimeout(() => (formNote.style.display = "none"), 5000);
 });
