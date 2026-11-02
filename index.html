@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>کیمیا پلیمر صبا | تولیدکننده عایق و روکش سیم و کابل</title>
 <meta name="description" content="شرکت دانش‌بنیان کیمیا پلیمر صبا، تولیدکننده گرانول عایق و روکش PVC سیم و کابل و ترکیبات پلیمری سفارشی — کارخانه کاشان، دفتر مرکزی تهران">
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link href="https://cdn.jsdelivr.net/gh/rastikerdar/shabnam-font@v5.0.1/dist/font-face.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -211,14 +209,14 @@
       </a>
     </div>
 
-    <form class="contact-form reveal" id="contactForm">
+    <form id="contactForm" class="contact-form reveal">
       <div class="form-row">
         <input type="text" name="name" placeholder="نام و نام خانوادگی" required>
         <input type="tel" name="phone" placeholder="شماره تماس" required>
       </div>
-      <textarea name="message" rows="4" placeholder="پیام شما..." required></textarea>
+      <textarea name="message" rows="4" placeholder="پیام شما" required></textarea>
       <button type="submit" class="btn btn-primary">ارسال پیام</button>
-      <p class="form-msg" id="formMsg"></p>
+      <p id="formMsg" class="form-msg"></p>
     </form>
   </div>
 </section>
@@ -228,14 +226,28 @@
   <div class="container footer-inner">
     <p><strong>شرکت دانش‌بنیان کیمیا پلیمر صبا</strong> — تولیدکننده عایق و روکش سیم و کابل (تأسیس ۱۳۹۶)</p>
     <p>دفتر مرکزی: تهران، جردن، خیابان شهید روانپور، پلاک ۶۲، طبقه دوم | کارخانه: کاشان</p>
-    <p class="copy">© تمامی حقوق محفوظ است</p>
+    <p class="copyright">© تمامی حقوق محفوظ است</p>
   </div>
 </footer>
 
-<!-- ===== لایت‌باکس ===== -->
+<!-- ===== لایت‌باکس گالری ===== -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightboxClose" aria-label="بستن">✕</button>
-  <img src="" alt="" id="lightboxImg">
+  <img id="lightboxImg" src="" alt="نمایش تصویر">
+</div>
+
+<!-- ===== مودال آنالیز محصول سفارشی ===== -->
+<div class="modal" id="productModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="بستن">✕</button>
+    <h3 id="modalTitle"></h3>
+    <p id="modalDesc" class="modal-desc"></p>
+    <table class="spec-table">
+      <tbody id="specTable"></tbody>
+    </table>
+    <h4 class="modal-subtitle">امکانات و خدمات</h4>
+    <ul class="feature-list" id="featureList"></ul>
+  </div>
 </div>
 
 <script src="script.js"></script>
